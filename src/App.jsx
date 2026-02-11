@@ -1,23 +1,21 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout";
-import MyChild from "./pages/MyChild";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Nested1 from "./pages/Nested1";
-import Nested2 from "./pages/Nested2";
+import { useState } from "react";
 
-const App = () => {
+function App() {
+  // Syntax: const [stateValue, updateFunction] = useState(initialValue);
+  const [count, setCount] = useState(4);
+
+  function decrementCount() {
+    // If count is 4:
+    setCount(prevState => prevState - 1); // Sets to 3
+    setCount((prevState) => prevState - 1);// Still sets to 3, because 'count' is still 4 in this render scope
+  }
   return (
-    <Routes>
-      <Route path="/layout" element={<Layout />}>
-        <Route path="nested1" element={<Nested1 />} />
-        <Route path="nested2" element={<Nested2 />} />
-      </Route>
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-    </Routes>
+    <div>
+      <button>-</button>
+      <span>{count}</span>
+      <button>+</button>
+    </div>
   );
-};
+}
 
-export default App;
+export default App
